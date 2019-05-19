@@ -51,7 +51,7 @@ public class Tools_QuantityNormalizeActivity extends AppCompatActivity {
             String QuantityReplaceReplace=Tools_QuantityReplaceReplace.getText().toString();
             EditText ReplaceRenameAdd=findViewById(R.id.ReplaceRenameAdd);
             RadioGroup NormalizeSaveMethod=findViewById(R.id.NormalizeSaveRuleGroup);
-            int SaveMethod=1;
+            int SaveMethod=-1;
 
             try {
                 if(NormalizeSaveMethod.getCheckedRadioButtonId()==R.id.NormalizeSaveMethodCover){

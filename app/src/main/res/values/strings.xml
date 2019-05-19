@@ -17,4 +17,39 @@
     <string name="title_activity_senior_crawl">高级爬虫</string>
     <string name="title_activity_setting">设置</string>
     <string name="title_activity_tools">工具</string>
+
+    <string name="content_main_TextViewtoubu">开始爬取</string>
+    <string name="content_main_TextViewFirst">爬取的网站第一页</string>
+    <string name="content_main_TextView1QianBiaoShi">爬取的网站页码前标识</string>
+    <string name="content_main_Di">第</string>
+    <string name="content_main_yedaodi">页到第</string>
+    <string name="content_main_houbiaoshi">爬取的网站页码后标识:</string>
+    <string name="content_main_zhinengpaqu">智能爬取</string>
+    <string name="content_main_jiandanpaqu">简单爬取</string>
+    <string name="content_main_xuanzeqipaqu">选择器爬取</string>
+    <string name="content_main_wailianbiaoshi">外链标识</string>
+    <string name="zero">0</string>
+    <string name="id">id</string>
+    <string name="content_main_class">class</string>
+    <string name="content_main_shuimianshijian">爬取的随眠时间1(默认:0ms):</string>
+    <string name="content_main_shuimianshijian1">爬取的随眠时间1</string>
+    <string name="content_main_paquguize">正则表达式爬取规则</string>
+    <string name="content_main_paquguizemh">正则表达式爬取规则:</string>
+    <string name="content_main_tichuguize">正则表达式剔除规则(为空则不剔除):</string>
+    <string name="content_main_tichuguizemh">正则表达式剔除规则</string>
+    <string name="content_main_neirongbiaoshi">内容标识:</string>
+    <string name="ClearSetting">清空设置</string>
+    <string name="FixSetting">修复数据</string>
+    <string name="BeginCrawler">开始爬取</string>
+    <string name="content_main_zhuijiahouzhui">新文件追加后缀,默认为.txt</string>
+    <string name="txt">.txt</string>
+    <string name="content_main_zhuijiashuoming">新文件为原文件追加自定义文本，默认追加.txt</string>
+    <string name="zhuijia">追加</string>
+    <string name="fugai">覆盖</string>
+    <string name="xinwenjian">新文件</string>
+    <string name="SavePathAndName">保存完整路径+文件名:</string>
+    <string name="SleepTime2">爬取的睡眠时间2</string>
+    <string name="Sleep2Speak">爬取的睡眠时间2(默认:0ms):</string>
+    <string name="ye">页</string>
+
 </resources>

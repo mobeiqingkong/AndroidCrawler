@@ -246,7 +246,7 @@ public class Tools {
         File f=new File(path);
         BufferedReader In = null;
         Log.d("引用文件路径:",path);
-        File[] files=f.listFiles();;
+        File[] files=f.listFiles();
         if(f.isDirectory()){
             files = f.listFiles();
             Log.d("该文件夹下的目录数量是",String.valueOf(files.length));

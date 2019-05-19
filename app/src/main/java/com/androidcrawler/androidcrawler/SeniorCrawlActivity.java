@@ -45,10 +45,6 @@ public class SeniorCrawlActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeniorCrawlActivity.this, SettingActivity.class);
                     startActivity(intent);
                 }
-                else if (id==R.id.nav_Exit) {
-                    android.os.Process.killProcess(android.os.Process.myPid());
-                    System.exit(0);
-                }
 
                 return true;
             }
