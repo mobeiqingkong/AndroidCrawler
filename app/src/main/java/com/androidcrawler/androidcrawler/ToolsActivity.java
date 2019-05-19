@@ -58,10 +58,14 @@ public class ToolsActivity extends AppCompatActivity {
         Button Tools_QuantityRename=findViewById(R.id.Tools_QuantityRename);
         Button Tools_QuantityReencode=findViewById(R.id.Tools_QuantityReencode);
         Button Tools_QuantityNormalize=findViewById(R.id.Tools_QuantityNormalize);
-        OnClick OnClick=new OnClick();
-        Tools_QuantityRename.setOnClickListener(OnClick);
-        Tools_QuantityReencode.setOnClickListener(OnClick);
-        Tools_QuantityNormalize.setOnClickListener(OnClick);
+        Button Tools_TextSplit=findViewById(R.id.Tools_TextSplit);
+        Button Tools_TextMerge=findViewById(R.id.Tools_TextMerge);
+        OnClick onClick=new OnClick();
+        Tools_QuantityRename.setOnClickListener(onClick);
+        Tools_QuantityReencode.setOnClickListener(onClick);
+        Tools_QuantityNormalize.setOnClickListener(onClick);
+        Tools_TextSplit.setOnClickListener(onClick);
+        Tools_TextMerge.setOnClickListener(onClick);
     }
     private class OnClick implements View.OnClickListener{
         @Override
@@ -76,6 +80,12 @@ public class ToolsActivity extends AppCompatActivity {
                     break;
                 case R.id.Tools_QuantityNormalize:
                     intent=new Intent(ToolsActivity.this, Tools_QuantityNormalizeActivity.class);
+                    break;
+                case R.id.Tools_TextSplit:
+                    intent = new Intent(ToolsActivity.this, Tools_TextSplitActivity.class);
+                    break;
+                case R.id.Tools_TextMerge:
+                    intent = new Intent(ToolsActivity.this, Tools_TextMergeActivity.class);
                     break;
             }
             startActivity(intent);

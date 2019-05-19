@@ -94,6 +94,10 @@ public class Tools {
        /* if(SaveMethod==2&&file.exists()){
             SaveFile(content,SaveName+SaveNameAdd.getText().toString(),SaveMethod);
         }else {*/
+       File de=new File(file.getParent());
+       if(!de.isDirectory()&&!de.exists()){
+           de.mkdirs();
+       }
         if (!file.exists()){
             try {
                 file.createNewFile();
@@ -107,15 +111,17 @@ public class Tools {
             输出流的构造参数1：可以是File对象  也可以是文件路径
             输出流的构造参数2：默认为false=>覆盖内容； true=>追加内容
              */
-            Writer = new FileWriter(file, true);
             //out.newLine();
+            Writer = new FileWriter(file, true);
             Writer.write(content);
             Writer.write("\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
+                if (Writer != null) {
                     Writer.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -315,17 +321,121 @@ public class Tools {
                 In = new BufferedReader(new InputStreamReader(new FileInputStream(file), getFilecharset(file.getPath())));// 读取文件
                 String thisLine = null;
                 //如果读到了，继续拼接
+                String ReadOne="";
+                int ReadTime=0;
                 while ((thisLine = In.readLine()) != null) {
+                    ReadOne+=thisLine+"\n";
+                    ReadTime+=1;
+                    if(ReadTime==50){
                     if(SaveMethod==0){
-                        SaveFile( thisLine.replaceAll(RegRule,AfterReplacce),file.getPath()+".bak.txt");
+                        SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+".bak.txt");
                     }
                     else if(SaveMethod==1){
-                        SaveFile( thisLine.replaceAll(RegRule,AfterReplacce),file.getPath()+RenameAdd);}
+                        SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+RenameAdd);}
+                        ReadTime=0;
+                        ReadOne="";
+                }}
+
+                if(ReadTime!=0){
+                if(SaveMethod==0){
+                    SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+".bak.txt");
                 }
+                else if(SaveMethod==1){
+                    SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+RenameAdd);}}
+
+
                 if(SaveMethod==0){
                     //file.delete();
                     File F=new File(file.getPath()+".bak.txt");
                     F.renameTo(file);
+                }
+                if (In != null) {
+                    try {
+                        In.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+    //文本拆分
+    public void TextSplit(String path,String RegRule) throws IOException {
+        File f=new File(path);
+        BufferedReader In = null;
+        Log.d("引用文件路径:",path);
+        File[] files;;
+        if(f.isDirectory()){
+            files = f.listFiles();
+            Log.d("该文件夹下的目录数量是",String.valueOf(files.length));
+        }else {
+            files=new File[1];
+            files[0]=f;
+        }
+        for (File file:files) {
+            //如果是目录则返回遍历函数
+            if (file.exists()&&file.isDirectory()) {
+                Log.d(file.getName()+"是文件夹",file.getPath());
+                //如果选择了方法1，则遍历所有子目录下的.txt文件
+                TextSplit(file.getPath(),RegRule);
+                //是文件,并且后缀.txt
+                //} else if((file.getName()).endsWith(".txt")){
+            }
+            else if (file.getPath().toLowerCase().endsWith(".txt"))
+            {
+                String ReadOne="";
+                //如果读到了，继续拼接
+                int ReadTime=1;
+                Pattern RegPa=Pattern.compile(RegRule);
+                String Content=ReadFileToString(file.getPath());
+                Matcher matcher=RegPa.matcher(Content);
+                while(matcher.find())
+                {
+                        SaveFile(matcher.group(),file.getParent()+"/"+file.getName().substring(0,file.getName().length()-4)+"/第"+ReadTime+"篇.txt");
+                        ReadTime+=1;
+                }
+                if (In != null) {
+                    try {
+                        In.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+
+    //文本合并
+    public void TextMerge(String path,String RegRule) throws IOException {
+        File f=new File(path);
+        BufferedReader In = null;
+        Log.d("引用文件路径:",path);
+        File[] files;;
+        if(f.isDirectory()){
+            files = f.listFiles();
+            Log.d("该文件夹下的目录数量是",String.valueOf(files.length));
+        }else {
+            files=new File[1];
+            files[0]=f;
+        }
+        for (File file:files) {
+            //如果是目录则返回遍历函数
+            if (file.exists()&&file.isDirectory()) {
+                Log.d(file.getName()+"是文件夹",file.getPath());
+                //如果选择了方法1，则遍历所有子目录下的.txt文件
+                TextSplit(file.getPath(),RegRule);
+                //是文件,并且后缀.txt
+                //} else if((file.getName()).endsWith(".txt")){
+            }
+            else if (file.getPath().toLowerCase().endsWith(".txt"))
+            {
+                Pattern RegPa=Pattern.compile(RegRule);
+                Matcher matcher=RegPa.matcher(file.getName());
+                String AChapter=file.getName().substring(0,file.getName().length()-4)+"\n"+ReadFileToString(file.getPath());
+                if(matcher.find())
+                {
+                    SaveFile(AChapter,file.getParent()+"/"+file.getParentFile().getName()+".Merge.txt");
                 }
                 if (In != null) {
                     try {

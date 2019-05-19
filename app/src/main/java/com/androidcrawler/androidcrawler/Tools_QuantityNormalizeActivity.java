@@ -24,13 +24,13 @@ public class Tools_QuantityNormalizeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools__quantity_replace);
         Button AddReplaceRule = findViewById(R.id.AddReplaceRule);
-        Button Be=findViewById(R.id.ReplaceStart);
+        Button ReplaceStart=findViewById(R.id.ReplaceStart);
         AddReplaceRule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
-        Be.setOnClickListener(new View.OnClickListener() {
+        ReplaceStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Thread StrartReplace=new Thread(RePlace);
