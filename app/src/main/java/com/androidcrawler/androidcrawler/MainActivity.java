@@ -64,16 +64,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //采用选择器的方式显示相应参数，否则隐藏
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Preferences PreferencesFix=new Preferences(MainActivity.this);
-                PreferencesFix.FixData(1,CrawlRule1.getCheckedRadioButtonId(),
+                PreferencesFix.FixData(CrawlRule1.getCheckedRadioButtonId(),
                 EasyRuleGroup.getCheckedRadioButtonId(),CrawlRule2.getCheckedRadioButtonId(),
                 EasyRuleGroup2.getCheckedRadioButtonId(),SaveRule.getCheckedRadioButtonId());
                 Toast.makeText(getApplicationContext(), "修复成功", Toast.LENGTH_SHORT).show();
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     CrawlRule1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            EditText editText=findViewById(R.id.Flag1);
             switch (checkedId){
                 case(R.id.IfEasyRule):
                     Flag1Group.setVisibility(View.VISIBLE);
@@ -231,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             try{BeginCrawl();}
             catch (Exception e)
             {
-                Toast.makeText(MainActivity.this,"出现了问题:"+e.getMessage(),Toast.LENGTH_SHORT).show();;
+                Toast.makeText(MainActivity.this,"出现了问题:"+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         }
         }
@@ -319,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //爬虫匹配规则与剔除规则，均采用正则表达式
         Pattern RegCrawlRulePa=Pattern.compile(RegCrawlRule);
         Pattern NotRegCrawlRulePa=Pattern.compile(NotRegCrawlRule);
-        Document doc = null;
+        Document doc ;
         //构造标识
         Connection connect= Jsoup.connect(url).method(Connection.Method.GET).
                 header("User-Agent",Head.getText().toString()).header("Connection","keep-alive").
@@ -439,7 +438,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -510,7 +509,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         if (id==R.id.nav_SeniorCrawler) {
             Intent intent = new Intent(MainActivity.this, SeniorCrawlActivity.class);
@@ -554,9 +553,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             EditText NotRegCrawl=findViewById(R.id.NotRegCrawl);
             EditText SaveName=findViewById(R.id.SaveName);
             RadioGroup SaveRule=findViewById(R.id.SaveRule);
-            RadioButton Select=null;
+            RadioButton Select;
             Preferences Prefer;//自定义的类
-            SharedPreferences Preference=null;
+            SharedPreferences Preference;
             //noinspection SimplifiableIfStatement
         //shared.xml路径，文件不存在则自动生成
        // Log.d("MainActivity","这是第一种测试:"+getFilesDir().getParent()+"/shared_prefs/shared.xml");
@@ -606,37 +605,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(Data.exists()){
                  Preference=getSharedPreferences("shared",MODE_PRIVATE);
                 // Map<String, String> map=new HashMap<String, String>();
-                Head.setText(Preference.getString("Head"+RecordNum,"")
+                Head.setText(Preference.getString("Head_SaveSpace"+RecordNum,"")
                 );
-                WebFirst.setText(Preference.getString("WebFirst"+RecordNum,""));
-                WebBegin.setText(Preference.getString("WebBegin"+RecordNum,""));
-                BeginPage.setText(Preference.getString("BeginPage"+RecordNum,""));
-                FinalPage.setText(Preference.getString("FinalPage"+RecordNum,""));
-                WebEnd.setText(Preference.getString("WebEnd"+RecordNum,""));
+                WebFirst.setText(Preference.getString("WebFirst_SaveSpace"+RecordNum,""));
+                WebBegin.setText(Preference.getString("WebBegin_SaveSpace"+RecordNum,""));
+                BeginPage.setText(Preference.getString("BeginPage_SaveSpace"+RecordNum,""));
+                FinalPage.setText(Preference.getString("FinalPage_SaveSpace"+RecordNum,""));
+                WebEnd.setText(Preference.getString("WebEnd_SaveSpace"+RecordNum,""));
 
-                //  CrawlRule1.setText(Preference.getString("CrawlRule1"+RecordNum,""));
-                Select=findViewById(Preference.getInt("CrawlRule1"+RecordNum,R.id.IfEasyRule));
+                //  CrawlRule1.setText(Preference.getString("CrawlRule1_SaveSpace"+RecordNum,""));
+                Select=findViewById(Preference.getInt("CrawlRule1_SaveSpace"+RecordNum,R.id.IfEasyRule));
                 Select.setChecked(true);
-                Select=findViewById(Preference.getInt("EasyRuleGroup"+RecordNum,R.id.EasyRuleclass));
+                Select=findViewById(Preference.getInt("EasyRuleGroup_SaveSpace"+RecordNum,R.id.EasyRuleclass));
                 Select.setChecked(true);
-                Flag1.setText(Preference.getString("Flag1"+RecordNum,""));
-                Sleep1.setText(Preference.getString("Sleep1"+RecordNum,"0"));
-                Flag2.setText(Preference.getString("Flag2"+RecordNum,""));
-                //CrawlRule2.setText(Preference.getString("CrawlRule2"+RecordNum,""));
+                Flag1.setText(Preference.getString("Flag1_SaveSpace"+RecordNum,""));
+                Sleep1.setText(Preference.getString("Sleep1_SaveSpace"+RecordNum,"0"));
+                Flag2.setText(Preference.getString("Flag2_SaveSpace"+RecordNum,""));
+                //CrawlRule2.setText(Preference.getString("CrawlRule2_SaveSpace"+RecordNum,""));
 
-                Select=findViewById(Preference.getInt("CrawlRule2"+RecordNum,R.id.IfEasyRule2));
-                Select.setChecked(true);
-
-                Select=findViewById(Preference.getInt("EasyRuleGroup"+RecordNum,R.id.EasyRuleclass2));
+                Select=findViewById(Preference.getInt("CrawlRule2_SaveSpace"+RecordNum,R.id.IfEasyRule2));
                 Select.setChecked(true);
 
+                Select=findViewById(Preference.getInt("EasyRuleGroup_SaveSpace"+RecordNum,R.id.EasyRuleclass2));
+                Select.setChecked(true);
 
-                Sleep2.setText(Preference.getString("Sleep2"+RecordNum,"0"));
-                RegCrawl.setText(Preference.getString("RegCrawl"+RecordNum,""));
-                NotRegCrawl.setText(Preference.getString("NotRegCrawl"+RecordNum,""));
-                SaveName.setText(Preference.getString("SaveName"+RecordNum,""));
-                //SaveRule.setText(Preference.getString("SaveRule"+RecordNum,""));
-                Select=findViewById(Preference.getInt("SaveRule"+RecordNum,R.id.SaveMethodCover));
+
+                Sleep2.setText(Preference.getString("Sleep2_SaveSpace"+RecordNum,"0"));
+                RegCrawl.setText(Preference.getString("RegCrawl_SaveSpace"+RecordNum,""));
+                NotRegCrawl.setText(Preference.getString("NotRegCrawl_SaveSpace"+RecordNum,""));
+                SaveName.setText(Preference.getString("SaveName_SaveSpace"+RecordNum,""));
+                //SaveRule.setText(Preference.getString("SaveRule_SaveSpace"+RecordNum,""));
+                Select=findViewById(Preference.getInt("SaveRule_SaveSpace"+RecordNum,R.id.SaveMethodCover));
                 Select.setChecked(true);
                 if(RecordNum!=0){
                 Toast.makeText(getApplicationContext(),"从"+RecordNum+"号位载入",Toast.LENGTH_SHORT).show(); }

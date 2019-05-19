@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,13 +15,15 @@
             android:id="@+id/Tools_QuantityReEncodingPath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="文件夹路径"
-            />
+            android:hint="@string/wenjianjlj"
+            android:autofillHints="@string/wenjianjlj"
+            tools:targetApi="o"
+            android:inputType="text" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="重编码规则"
+            android:text="@string/cbmgz"
             android:textColor="#000000" />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,24 +34,24 @@
                 android:id="@+id/ReEncodingSaveRuleGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
                 <RadioButton
                     android:id="@+id/ReEncodingSaveMethodCover"
                     android:checked="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="覆盖"/>
+                    android:text="@string/fugai"/>
                 <RadioButton
                     android:id="@+id/ReEncodingSaveMethodNewFile"
                     android:checked="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新文件"/>
+                    android:text="@string/newfile"/>
             </RadioGroup>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ReEncodingRename"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -60,16 +61,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginTop="5dp"
-                android:text="新文件为原文件追加自定义文本，默认追加.txt"
+                android:text="@string/newfiletxt"
                 android:textColor="#000000" />
 
             <EditText
                 android:id="@+id/ReEncodingRenameAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="新文件追加后缀,默认为.txt"
+                android:hint="@string/newfiletxt"
                 android:singleLine="true"
-                android:text=".txt" />
+                android:text="@string/pointtxt"
+                android:autofillHints="@string/pointtxt"
+                android:inputType="text"
+                tools:targetApi="o" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,22 +85,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape"
-                android:text="确认重编码"/>
+                android:text="@string/qrcbm"
+                tools:ignore="ButtonStyle" />
 
             <Button
-                android:id="@+id/ReEncodingCancle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape"
                 android:layout_marginStart="5dp"
-                android:text="还原"/>
+                android:text="@string/huanyuan"
+                tools:ignore="ButtonStyle" />
             <Button
-                android:id="@+id/ReEncodingExit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape"
                 android:layout_marginStart="5dp"
-                android:text="取消"/>
+                android:text="@string/quxiao"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
 
     </LinearLayout>

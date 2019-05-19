@@ -3,79 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/SaveStatus"
         android:orderInCategory="100"
-        android:title="保存到"
+        android:title="@string/baocundao"
         app:showAsAction="never" >
         <menu>
             <item
                 android:id="@+id/SaveStatus1"
                 android:orderInCategory="100"
-                android:title="保存到记录1"
+                android:title="@string/bcdjl1"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/SaveStatus2"
                 android:orderInCategory="100"
-                android:title="保存到记录2"
+                android:title="@string/bcdjl2"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/SaveStatus3"
                 android:orderInCategory="100"
-                android:title="保存到记录3"
+                android:title="@string/bcdjl3"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/SaveStatus4"
                 android:orderInCategory="100"
-                android:title="保存到记录4"
+                android:title="@string/bcdjl4"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/SaveStatus5"
                 android:orderInCategory="100"
-                android:title="保存到记录5"
+                android:title="@string/bcdjl5"
                 app:showAsAction="never" />
         </menu>
     </item>
     <item
-        android:id="@+id/LoadStatus"
         android:orderInCategory="100"
-        android:title="载入"
+        android:title="@string/zzairu"
         app:showAsAction="never" >
         <menu>
             <item
                 android:id="@+id/LoadStatus1"
                 android:orderInCategory="100"
-                android:title="从记录1载入"
+                android:title="@string/cjl1zr"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/LoadStatus2"
                 android:orderInCategory="100"
-                android:title="从记录2载入"
+                android:title="@string/cjl2zr"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/LoadStatus3"
                 android:orderInCategory="100"
-                android:title="从记录3载入"
+                android:title="@string/cjl3zr"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/LoadStatus4"
                 android:orderInCategory="100"
-                android:title="从记录4载入"
+                android:title="@string/cjl4zr"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/LoadStatus5"
                 android:orderInCategory="100"
-                android:title="从记录5载入"
+                android:title="@string/cjl5zr"
                 app:showAsAction="never" />
         </menu>
     </item>
     <item
         android:id="@+id/OutputStatus"
         android:orderInCategory="100"
-        android:title="备份"
-        app:showAsAction="never" ></item>
+        android:title="@string/baifen"
+        app:showAsAction="never" />
     <item
         android:id="@+id/InputStatus"
         android:orderInCategory="100"
-        android:title="恢复"
+        android:title="@string/huifu"
         app:showAsAction="never" />
 </menu>

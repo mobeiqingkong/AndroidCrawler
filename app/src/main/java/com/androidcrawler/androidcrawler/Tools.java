@@ -63,7 +63,7 @@ class Tools {
                         if (0x80 <= read && read <= 0xBF) // 双字节 (0xC0 - 0xDF)
                             // (0x80
                             // - 0xBF),也可能在GB编码内
-                            continue;
+                            {continue;}
                         else
                             break;
                     } else if (0xE0 <= read && read <= 0xEF) {// 也有可能出错，但是几率较小
@@ -134,7 +134,7 @@ class Tools {
         BufferedReader In = null;
         try {
             In = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path)), getFilecharset(path)));// 读取文件
-            String thisLine = null;
+            String thisLine;
             //如果读到了，继续拼接
             while ((thisLine = In.readLine()) != null) {
                 Result.append(thisLine);
@@ -156,13 +156,15 @@ class Tools {
     }
     //重命名
     int RenameAllFile(String TXTPath, String RegRule, String AfterReplacce, int IfContainDirectory) {
+        if(TXTPath.endsWith("/")){
+            TXTPath=TXTPath.substring(0,TXTPath.length()-1);}
         //获取文件夹下的所有文件(正确理解Java的文件:文件和文件夹)
         String NewName;
         int Result = -1;
         //TXTPath=TXTPath.replaceAll("([^\\s\\S]|([\\t\\s\\n])+)","");
         Log.d("这是传递过来的TXTPath路径:", TXTPath);
         File f = new File(TXTPath);
-        File[] files = f.listFiles();
+        File[] files;
         if (RegRule.equals("")) {
             RegRule = "[^\\s\\S]";
         }
@@ -197,13 +199,19 @@ class Tools {
             return Result;
     }
 
-    //批量重编码原写法,会出现内存泄漏
+    //批量重编码原写法
     void ReEncode(String path, String CodingType, int SaveMethod, String RenameAdd){
+        if(path.endsWith("/")){
+            path=path.substring(0,path.length()-1);}
         File f=new File(path);
         Log.d("引用文件路径:",path);
-        String TextContent="";
-        File[] files = f.listFiles();
+        File[] files ;
         if(f.isDirectory()){
+            files = f.listFiles();
+        }else {
+            files=new File[1];
+            files[0]=f;
+        }
             for (File file:files) {
                 //如果是目录则返回遍历函数
                 if (file.exists()&&file.isDirectory()) {
@@ -212,32 +220,16 @@ class Tools {
                     //是文件,并且后缀.txt
                     //} else if((file.getName()).endsWith(".txt")){
                 } else if (!getFilecharset(file.getPath()).equals("UTF-8")&&file.getPath().toLowerCase().endsWith(".txt")){
-                    Log.d("文件路径:", file.getPath());
-                    Log.d("文件原编码:", getFilecharset(file.getPath()));
                     if(SaveMethod==0){
-                        TextContent=ReadFileToString(file.getPath());
-                        file.delete();
-                        SaveFile( TextContent,file.getPath());
+                        SaveFile(ReadFileToString(file.getPath()) ,file.getPath()+".tmp");
+                        File F=new File(file.getPath()+".tmp");
+                        F.renameTo(file);
                     }
                     else if(SaveMethod==1){
                         SaveFile( ReadFileToString(file.getPath()),file.getPath()+RenameAdd);
                     }
-                    Log.d("文件路径:", file.getPath());
-                    Log.d("文件重编码后编码:",getFilecharset(file.getPath()));
                     }
             }
-        }
-        else{
-            if (!getFilecharset(f.getPath()).equals("UTF-8")&&f.getPath().toLowerCase().endsWith(".txt"))
-            {
-            if(SaveMethod==0){
-                TextContent=ReadFileToString(f.getPath());
-                f.delete();
-                SaveFile(TextContent ,f.getPath());
-            }else if(SaveMethod==1){
-                SaveFile( ReadFileToString(f.getPath()),f.getPath()+RenameAdd);
-            }
-        }}
     }
 
     //批量重编码改进写法
@@ -296,10 +288,13 @@ class Tools {
     }
     */
     //批量规格化
-    void Normalize(String path, String RegRule, String AfterReplacce, int SaveMethod, String RenameAdd) throws IOException {
+    void Normalize(String path, String RegRule, String AfterReplacce, int SaveMethod, String RenameAdd) {
+
+        if(path.endsWith("/")){
+            path=path.substring(0,path.length()-1);}
         File f=new File(path);
         Log.d("引用文件路径:",path);
-        File[] files;;
+        File[] files;
         if(f.isDirectory()){
             files = f.listFiles();
             Log.d("该文件夹下的目录数量是",String.valueOf(files.length));
@@ -330,11 +325,13 @@ class Tools {
                 }
             }}
     //文本拆分
-    public void TextSplit(String path,String RegRule) throws IOException {
+    void TextSplit(String path, String RegRule) throws IOException {
+
+        if(path.endsWith("/")){
+            path=path.substring(0,path.length()-1);}
         File f=new File(path);
-        BufferedReader In = null;
         Log.d("引用文件路径:",path);
-        File[] files;;
+        File[] files;
         if(f.isDirectory()){
             files = f.listFiles();
             Log.d("该文件夹下的目录数量是",String.valueOf(files.length));
@@ -364,9 +361,6 @@ class Tools {
                         SaveFile(matcher.group(),file.getParent()+"/"+file.getName().substring(0,file.getName().length()-4)+"/第"+ReadTime+"篇.txt");
                         ReadTime+=1;
                 }
-                if (In != null) {
-                    In.close();
-                }
             }
         }
     }
@@ -375,9 +369,8 @@ class Tools {
     //文本合并
     void TextMerge(String path, String RegRule) throws IOException {
         File f=new File(path);
-        BufferedReader In = null;
         Log.d("引用文件路径:",path);
-        File[] files;;
+        File[] files;
         if(f.isDirectory()){
             files = f.listFiles();
             Log.d("该文件夹下的目录数量是",String.valueOf(files.length));
@@ -398,13 +391,12 @@ class Tools {
             {
                 Pattern RegPa=Pattern.compile(RegRule);
                 Matcher matcher=RegPa.matcher(file.getName());
-                String AChapter=file.getName().substring(0,file.getName().length()-4)+"\n"+ReadFileToString(file.getPath());
+
+
+
                 if(matcher.find())
                 {
-                    SaveFile(AChapter,file.getParent()+"/"+file.getParentFile().getName()+".Merge.txt");
-                }
-                if (In != null) {
-                        In.close();
+                    SaveFile(ReadFileToString(file.getPath()),file.getParent()+"/"+file.getParentFile().getName()+".Merge.txt");
                 }
             }
         }

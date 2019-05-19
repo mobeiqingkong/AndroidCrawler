@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/toolsMain"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="#FFFFFF"
     tools:context=".ToolsActivity">
@@ -30,10 +29,11 @@
             android:layout_weight="1"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="批量重命名"
+            android:text="@string/content_tools_piliangcmm"
 
             android:layout_marginEnd="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/Tools_QuantityReencode"
@@ -44,8 +44,9 @@
             android:layout_marginStart="5dp"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="批量转换编码"
-            android:textColor="#000000" />
+            android:text="@string/content_tools_piliangzhbm"
+            android:textColor="#000000"
+            tools:ignore="ButtonStyle" />
 
 
     </TableRow>
@@ -62,10 +63,11 @@
             android:layout_weight="1"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="批量规格化"
+            android:text="@string/content_tools_piliangggh"
 
             android:layout_marginEnd="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/Tools_TextSplit"
@@ -76,8 +78,9 @@
             android:layout_weight="1"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="文本拆分"
-            android:textColor="#000000" />
+            android:text="@string/content_tools_wenbenchaifen"
+            android:textColor="#000000"
+            tools:ignore="ButtonStyle" />
 
     </TableRow>
 
@@ -93,13 +96,13 @@
             android:layout_weight="1"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="文本整合"
+            android:text="@string/content_tools_wenbenzhenghe"
 
             android:layout_marginEnd="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            tools:ignore="ButtonStyle" />
 
         <Button
-            android:id="@+id/Tools_RemoveRepeat"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -107,8 +110,9 @@
             android:layout_weight="1"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="内容去重"
-            android:textColor="#000000" />
+            android:text="@string/content_tools_neirongquchong"
+            android:textColor="#000000"
+            tools:ignore="ButtonStyle" />
 
     </TableRow>
 

@@ -20,25 +20,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="txt文件路径"
-                />
+                android:hint="@string/wenjianjlj"
+                android:autofillHints="@string/wenjianjlj"
+                tools:targetApi="o" />
             <LinearLayout
-                android:id="@+id/Tools_TextMergeRuleGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="正则表达式合并规则:"
+                    android:text="@string/hebgz"
                     android:layout_gravity="start"
                     android:textColor="#000000"/>
                 <EditText
                     android:id="@+id/Tools_TextMergeRule"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="正则表达式合并规则"
-                    />
+                    android:hint="@string/hbgz"
+                    android:autofillHints="@string/hbgz"
+                    android:inputType="text"
+                    tools:targetApi="o" />
             </LinearLayout>
             <CheckBox
                 android:id="@+id/AutoTextMerge"
@@ -46,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:checked="true"
-                android:text="智能整合"/>
+                android:text="@string/zhinengzh"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -57,14 +59,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape"
-                    android:text="确认整合"/>
+                    android:text="@string/querenzh"
+                    tools:ignore="ButtonStyle" />
                 <Button
-                    android:id="@+id/TextMergeExit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape"
                     android:layout_marginStart="5dp"
-                    android:text="取消"/>
+                    android:text="@string/quxiao"
+                    tools:ignore="ButtonStyle" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

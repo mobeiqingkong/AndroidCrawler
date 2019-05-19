@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,38 +15,44 @@
             android:id="@+id/Tools_QuantityRenamePath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="文件夹路径"
-            />
+            android:hint="@string/wenjianjlj"
+            android:autofillHints="@string/wenjianjlj"
+            tools:targetApi="o"
+            android:inputType="text" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="正则表达式替换规则:"
+            android:text="@string/tihuanguize"
             android:layout_gravity="start"
             android:textColor="#000000"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="替换前:"
+            android:text="@string/tihuanqian"
             android:layout_gravity="start"
             android:textColor="#000000"/>
         <EditText
             android:id="@+id/Tools_QuantityRenameSelect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="选择部分"
-            />
+            android:hint="@string/xuanzebufen"
+            android:autofillHints="@string/xuanzebufen"
+            tools:targetApi="o"
+            android:inputType="text" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="替换后:"
+            android:text="@string/tihuanhou"
             android:layout_gravity="start"
             android:textColor="#000000"/>
         <EditText
             android:id="@+id/Tools_QuantityRenameReplace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="替换部分"
-            />
+            android:hint="@string/tihuanbufen"
+            android:autofillHints="@string/tihuanbufen"
+            tools:targetApi="o"
+            android:inputType="text" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,21 +63,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape"
-                android:text="确认替换"/>
+                android:text="@string/querentihuan"
+                tools:ignore="ButtonStyle" />
             <Button
                 android:id="@+id/RenameCancle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape"
                 android:layout_marginStart="5dp"
-                android:text="还原"/>
+                android:text="@string/huanyuan"
+                tools:ignore="ButtonStyle" />
             <Button
                 android:id="@+id/RenameExit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape"
                 android:layout_marginStart="5dp"
-                android:text="取消"/>
+                android:text="@string/quxiao"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
