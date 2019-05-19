@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_QuickCrawler"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_QuickCrawler" />
+        <item
+            android:id="@+id/nav_SeniorCrawler"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/nav_SeniorCrawler" />z
+        <item
+            android:id="@+id/nav_Tools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/nav_Tools" />
+        <item
+            android:id="@+id/nav_Help"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/nav_Help" />
+        <item
+            android:id="@+id/nav_About"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/nav_About" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_Setting"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/nav_Setting" />
+            <item
+                android:id="@+id/nav_Exit"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/nav_Exit" />
+        </menu>
+    </item>
+
+</menu>

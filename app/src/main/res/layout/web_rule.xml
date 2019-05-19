@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/AdvancedCrawHead"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:hint="爬取采用的标识头部"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="" />
+
+        <EditText
+            android:id="@+id/AdvancedCrawWebFirst"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:hint="爬取的网站第一页"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="" />
+
+        <EditText
+            android:id="@+id/AdvancedCrawWebBegin"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:hint="爬取的网站页码前标识"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="" />
+
+        <EditText
+            android:id="@+id/AdvancedCrawBeginPage"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:hint="起始页面"
+            android:inputType="number"
+            android:singleLine="true"
+            android:text="" />
+
+        <EditText
+            android:id="@+id/AdvancedCrawFinalPage"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:hint="终止页面"
+            android:inputType="number"
+            android:singleLine="true"
+            android:text="" />
+
+        <EditText
+            android:id="@+id/AdvancedCrawWebEnd"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:hint="爬取的网站的页码后标识"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="设置网页"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
