@@ -20,9 +20,9 @@ import java.util.regex.Pattern;
 
 import javax.xml.transform.Result;
 
-public class Tools {
+class Tools {
     //判断编码格式方法
-    public  String getFilecharset(String SourceFilePath) {
+    private String getFilecharset(String SourceFilePath) {
         File SourceFile=new File(SourceFilePath);
 
         String charset = "GBK";
@@ -89,7 +89,7 @@ public class Tools {
 
 
     //保存文件到sd卡
-    public void SaveFile(String content,String PathAndSaveName) {
+    void SaveFile(String content, String PathAndSaveName) {
         File file = new File(PathAndSaveName);
        /* if(SaveMethod==2&&file.exists()){
             SaveFile(content,SaveName+SaveNameAdd.getText().toString(),SaveMethod);
@@ -128,17 +128,17 @@ public class Tools {
         }
     }
     //打开指定文件，读取其数据，返回字符串对象
-    public String ReadFileToString(String path) {
+    String ReadFileToString(String path) {
         // 定义返回结果
-        String Result = "";
+        StringBuilder Result = new StringBuilder();
         BufferedReader In = null;
         try {
             In = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path)), getFilecharset(path)));// 读取文件
             String thisLine = null;
             //如果读到了，继续拼接
             while ((thisLine = In.readLine()) != null) {
-
-                Result += thisLine+"\n";
+                Result.append(thisLine);
+                Result.append("\n");
             }
             In.close();
         } catch (IOException e) {
@@ -152,10 +152,10 @@ public class Tools {
                 }
             }
         }
-        return Result;
+        return Result.toString();
     }
     //重命名
-    public int RenameAllFile(String TXTPath,String RegRule,String AfterReplacce, int IfContainDirectory) {
+    int RenameAllFile(String TXTPath, String RegRule, String AfterReplacce, int IfContainDirectory) {
         //获取文件夹下的所有文件(正确理解Java的文件:文件和文件夹)
         String NewName;
         int Result = -1;
@@ -198,8 +198,7 @@ public class Tools {
     }
 
     //批量重编码原写法,会出现内存泄漏
-    /*
-    public void ReEncode(String path,String CodingType,int SaveMethod,String RenameAdd){
+    void ReEncode(String path, String CodingType, int SaveMethod, String RenameAdd){
         File f=new File(path);
         Log.d("引用文件路径:",path);
         String TextContent="";
@@ -239,10 +238,11 @@ public class Tools {
                 SaveFile( ReadFileToString(f.getPath()),f.getPath()+RenameAdd);
             }
         }}
-    }*/
+    }
 
     //批量重编码改进写法
-    public void ReEncode(String path,String CodingType,int SaveMethod,String RenameAdd) throws IOException {
+    /*
+    void ReEncode(String path, String CodingType, int SaveMethod, String RenameAdd) throws IOException {
         File f=new File(path);
         BufferedReader In = null;
         Log.d("引用文件路径:",path);
@@ -294,10 +294,10 @@ public class Tools {
             }
 
     }
+    */
     //批量规格化
-    public void Normalize(String path,String RegRule,String AfterReplacce,int SaveMethod,String RenameAdd) throws IOException {
+    void Normalize(String path, String RegRule, String AfterReplacce, int SaveMethod, String RenameAdd) throws IOException {
         File f=new File(path);
-        BufferedReader In = null;
         Log.d("引用文件路径:",path);
         File[] files;;
         if(f.isDirectory()){
@@ -318,47 +318,17 @@ public class Tools {
             }
             else if (file.getPath().toLowerCase().endsWith(".txt"))
             {
-                In = new BufferedReader(new InputStreamReader(new FileInputStream(file), getFilecharset(file.getPath())));// 读取文件
-                String thisLine = null;
                 //如果读到了，继续拼接
-                String ReadOne="";
-                int ReadTime=0;
-                while ((thisLine = In.readLine()) != null) {
-                    ReadOne+=thisLine+"\n";
-                    ReadTime+=1;
-                    if(ReadTime==50){
+                StringBuilder ReadOne=new StringBuilder();
                     if(SaveMethod==0){
-                        SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+".bak.txt");
+                        SaveFile( ReadFileToString(file.getPath()).replaceAll(RegRule,AfterReplacce),file.getPath()+".Normalizetmp");
+                        File F=new File(file.getPath()+".bak.txt") ;
+                        F.renameTo(file);
                     }
                     else if(SaveMethod==1){
-                        SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+RenameAdd);}
-                        ReadTime=0;
-                        ReadOne="";
-                }}
-
-                if(ReadTime!=0){
-                if(SaveMethod==0){
-                    SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+".bak.txt");
+                        SaveFile( ReadFileToString(file.getPath()).replaceAll(RegRule,AfterReplacce),file.getPath()+RenameAdd);}
                 }
-                else if(SaveMethod==1){
-                    SaveFile( ReadOne.replaceAll(RegRule,AfterReplacce),file.getPath()+RenameAdd);}}
-
-
-                if(SaveMethod==0){
-                    //file.delete();
-                    File F=new File(file.getPath()+".bak.txt");
-                    F.renameTo(file);
-                }
-                if (In != null) {
-                    try {
-                        In.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    }
+            }}
     //文本拆分
     public void TextSplit(String path,String RegRule) throws IOException {
         File f=new File(path);
@@ -395,11 +365,7 @@ public class Tools {
                         ReadTime+=1;
                 }
                 if (In != null) {
-                    try {
-                        In.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    In.close();
                 }
             }
         }
@@ -407,7 +373,7 @@ public class Tools {
 
 
     //文本合并
-    public void TextMerge(String path,String RegRule) throws IOException {
+    void TextMerge(String path, String RegRule) throws IOException {
         File f=new File(path);
         BufferedReader In = null;
         Log.d("引用文件路径:",path);
@@ -438,11 +404,7 @@ public class Tools {
                     SaveFile(AChapter,file.getParent()+"/"+file.getParentFile().getName()+".Merge.txt");
                 }
                 if (In != null) {
-                    try {
                         In.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }

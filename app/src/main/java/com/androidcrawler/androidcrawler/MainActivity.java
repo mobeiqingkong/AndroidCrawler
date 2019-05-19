@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -54,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final RadioGroup CrawlRule2=findViewById(R.id.CrawlRule2);
         final RadioGroup SaveRule=findViewById(R.id.SaveRule);
         RadioButton SaveMethodNewFile=findViewById(R.id.SaveMethodNewFile);
-        LinearLayout Flag1Group=findViewById(R.id.Flag1Group);
-        LinearLayout Flag2Group=findViewById(R.id.Flag1Group);
+        final LinearLayout Flag1Group=findViewById(R.id.Flag1Group);
+        final LinearLayout Flag2Group=findViewById(R.id.Flag2Group);
         final Button FixData = findViewById(R.id.FixData);
         final RadioGroup EasyRuleGroup=findViewById(R.id.EasyRuleGroup);
         final RadioGroup EasyRuleGroup2=findViewById(R.id.EasyRuleGroup2);
@@ -137,19 +138,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             EditText editText=findViewById(R.id.Flag1);
             switch (checkedId){
                 case(R.id.IfEasyRule):
-                    findViewById(R.id.Flag1Group).setVisibility(View.VISIBLE);
+                    Flag1Group.setVisibility(View.VISIBLE);
                     findViewById(R.id.EasyRuleGroup).setVisibility(View.VISIBLE);
                    // Toast.makeText(MainActivity.this,"选择了简单爬取",Toast.LENGTH_SHORT).show();
                     break;
                 case (R.id.IfAllRule):
                     findViewById(R.id.EasyRuleGroup).setVisibility(View.GONE);
                    // Toast.makeText(MainActivity.this,"选择了选择器爬取",Toast.LENGTH_SHORT).show();
-                    findViewById(R.id.Flag1Group).setVisibility(View.VISIBLE);
+                    Flag1Group.setVisibility(View.VISIBLE);
                     break;
                 case (R.id.IfAutoCrawl):
                     findViewById(R.id.EasyRuleGroup).setVisibility(View.GONE);
                    // Toast.makeText(MainActivity.this,"选择了智能爬取",Toast.LENGTH_SHORT).show();
-                    findViewById(R.id.Flag1Group).setVisibility(View.GONE);
+                    Flag1Group.setVisibility(View.GONE);
                     break;
             }
         }
@@ -160,15 +161,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case(R.id.IfEasyRule2):
-                        findViewById(R.id.Flag2Group).setVisibility(View.VISIBLE);
+                        Flag2Group.setVisibility(View.VISIBLE);
                         findViewById(R.id.EasyRuleGroup2).setVisibility(View.VISIBLE);
                         break;
                     case (R.id.IfAllRule2):
-                        findViewById(R.id.Flag2Group).setVisibility(View.VISIBLE);
+                        Flag2Group.setVisibility(View.VISIBLE);
                         findViewById(R.id.EasyRuleGroup2).setVisibility(View.GONE);
                         break;
                     case (R.id.IfAutoCrawl2):
-                        findViewById(R.id.Flag2Group).setVisibility(View.GONE);
+                        Flag2Group.setVisibility(View.GONE);
                         findViewById(R.id.EasyRuleGroup2).setVisibility(View.GONE);
                         break;
                 }
@@ -347,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                       NovelsTitle = doc.select("." + Flag1.getText().toString().replace(" ", "."));
                                   }
                     }
-                    if(!NovelsTitle.isEmpty()){
+                    if(NovelsTitle!=null&&!NovelsTitle.isEmpty()){
                     for (Element NovelTitle:NovelsTitle) {
                         if (RegCrawlRulePa.matcher(NovelTitle.text()).find() && !NotRegCrawlRulePa.matcher(NovelTitle.text()).find()) {
                             tools.SaveFile("第" + NovelNum + "篇:" + NovelTitle.text()
@@ -392,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if (CrawlRule2.getCheckedRadioButtonId() == R.id.IfAutoCrawl2) {
                             String NovelBodyContent = "";
                             doc = connect.get();
-                            doc = Jsoup.parse(doc.toString().replaceAll("<[\\/]*?p>", "<br>"));
+                            doc = Jsoup.parse(doc.toString().replaceAll("<[/]*?p>", "<br>"));
                         //    SaveFile(doc.toString(), "/sdcard/Crawl.log");
                             NovelContent = doc.getAllElements();
                             for (Element NovelBodyElement : NovelContent) {
@@ -405,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                            // Toast.makeText(MainActivity.this,"NovelContent为空",Toast.LENGTH_SHORT).show();
                             tools.SaveFile(NovelBodyContent, SaveName);
                         }
-                        else{
+                        else if(doc!=null){
                         if(CrawlRule2.getCheckedRadioButtonId()==R.id.IfAllRule2){
                             NovelContent = doc.select(Flag2.getText().toString()); }
                         else if (CrawlRule2.getCheckedRadioButtonId()==R.id.IfEasyRule2){
@@ -416,7 +417,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 NovelContent = doc.select("." + Flag2.getText().toString().replace(" ", "."));
                             }
                         }
-                        tools.SaveFile(NovelContent.text(),SaveName);
+                        if(NovelContent!=null){
+                        tools.SaveFile(NovelContent.text(),SaveName);}
                         /*
                         if(i==1&&NovelContent.text().isEmpty()==false){
                             SaveFile(NovelContent.text());
@@ -505,7 +507,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
