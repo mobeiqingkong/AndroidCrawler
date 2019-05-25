@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">打开菜单</string>
     <string name="navigation_drawer_close">关闭菜单</string>
     <string name="nav_header_title">AndroidCrawler</string>
-    <string name="nav_header_subtitle">1849923303@qq.com</string>
+    <string name="nav_header_subtitle">北极弧光</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_QuickCrawler">快速爬虫</string>
     <string name="nav_SeniorCrawler">高级爬虫</string>
@@ -16,7 +16,7 @@
     <string name="title_activity_setting">设置</string>
     <string name="title_activity_tools">工具</string>
 
-    <string name="content_main_TextViewtoubu">开始爬取</string>
+    <string name="content_main_TextViewtoubu">爬取采用的标识</string>
     <string name="content_main_TextViewFirst">爬取的网站第一页</string>
     <string name="content_main_TextView1QianBiaoShi">爬取的网站页码前标识</string>
     <string name="content_main_Di">第</string>
@@ -29,8 +29,8 @@
     <string name="zero">0</string>
     <string name="id">id</string>
     <string name="content_main_class">class</string>
-    <string name="content_main_shuimianshijian">爬取的随眠时间1(默认:0ms):</string>
-    <string name="content_main_shuimianshijian1">爬取的随眠时间1</string>
+    <string name="content_main_shuimianshijian">爬取的睡眠时间1(默认:0ms):</string>
+    <string name="content_main_shuimianshijian1">爬取的睡眠时间1</string>
     <string name="content_main_paquguize">正则表达式爬取规则</string>
     <string name="content_main_paquguizemh">正则表达式爬取规则:</string>
     <string name="content_main_tichuguize">正则表达式剔除规则(为空则不剔除):</string>
@@ -97,5 +97,10 @@
     <string name="cjl5zr">从记录5载入</string>
     <string name="baifen">备份</string>
     <string name="huifu">恢复</string>
+    <string name="about">关于\n</string>
+    <string name="kfzbjhg"><![CDATA[>开发者:北极弧光\n]]></string>
+    <string name="vertion"><![CDATA[>版本:1.0\n]]></string>
+    <string name="poem">将进酒，杯莫停\n</string>
+    <string name="PoemAuthor">－李白《将进酒》</string>
 
 </resources>

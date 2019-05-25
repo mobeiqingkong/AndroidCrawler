@@ -45,7 +45,14 @@ public class SeniorCrawlActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeniorCrawlActivity.this, SettingActivity.class);
                     startActivity(intent);
                 }
-
+                else if (id==R.id.nav_Help) {
+                    Intent intent = new Intent(SeniorCrawlActivity.this, HelpActivity.class);
+                    startActivity(intent);
+                }
+                else if (id==R.id.nav_About) {
+                    Intent intent = new Intent(SeniorCrawlActivity.this, AboutActivity.class);
+                    startActivity(intent);
+                }
                 return true;
             }
         });

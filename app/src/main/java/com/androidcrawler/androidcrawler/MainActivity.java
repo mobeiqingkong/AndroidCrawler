@@ -255,11 +255,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int NovelNum=1;
         File file;
         //默认爬取的文本就是采用追加的方式，因此不变
-        if(SaveRule.getCheckedRadioButtonId()==R.id.SaveMethodAddTo)
-        {
-        }
         //如果采用覆盖，则先把文件删除再创建一个空文件
-        else if(SaveRule.getCheckedRadioButtonId()==R.id.SaveMethodCover)
+        if(SaveRule.getCheckedRadioButtonId()==R.id.SaveMethodCover)
         {
             file= new File(FileName);
             file.delete();
@@ -522,6 +519,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id==R.id.nav_Setting) {
             Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+            startActivity(intent);
+        }
+        else if (id==R.id.nav_Help) {
+            Intent intent = new Intent(MainActivity.this, HelpActivity.class);
+            startActivity(intent);
+        }
+        else if (id==R.id.nav_About) {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         }
         return true;

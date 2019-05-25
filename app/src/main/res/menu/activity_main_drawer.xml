@@ -17,9 +17,11 @@
             android:icon="@drawable/ic_menu_tools"
             android:title="@string/nav_Tools" />
         <item
+            android:id="@+id/nav_Help"
             android:icon="@drawable/ic_menu_help"
             android:title="@string/nav_Help" />
         <item
+            android:id="@+id/nav_About"
             android:icon="@drawable/ic_menu_about"
             android:title="@string/nav_About" />
     </group>

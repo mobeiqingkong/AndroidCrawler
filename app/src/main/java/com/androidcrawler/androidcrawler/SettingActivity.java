@@ -80,6 +80,10 @@ public class SettingActivity extends AppCompatActivity
             Intent intent = new Intent(SettingActivity.this, ToolsActivity.class);
             startActivity(intent);
         }
+        else if (id==R.id.nav_Help) {
+            Intent intent = new Intent(SettingActivity.this, HelpActivity.class);
+            startActivity(intent);
+        }
         return true;
     }
 }
