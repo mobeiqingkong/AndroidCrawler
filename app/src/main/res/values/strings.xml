@@ -102,5 +102,6 @@
     <string name="vertion"><![CDATA[>版本:1.0\n]]></string>
     <string name="poem">将进酒，杯莫停\n</string>
     <string name="PoemAuthor">－李白《将进酒》</string>
+    <string name="setting">设置</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.androidcrawler.androidcrawler;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -401,4 +403,7 @@ class Tools {
             }
         }
     }
+
+
+
 }

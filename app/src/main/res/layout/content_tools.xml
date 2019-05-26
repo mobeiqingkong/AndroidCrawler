@@ -6,116 +6,114 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="#FFFFFF"
-    tools:context=".ToolsActivity">
+    android:background="#FFFFFF">
 
-<TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="15dp"
-    android:padding="5dp"
-    >
-    <TableRow
-        android:gravity="center"
-        android:padding="5dp">
-        <Button
-            android:id="@+id/Tools_QuantityRename"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/shape"
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        android:padding="5dp"
+        >
+        <TableRow
             android:gravity="center"
-            android:text="@string/content_tools_piliangcmm"
-            android:layout_marginEnd="5dp"
-            android:textColor="#000000"
-            tools:ignore="ButtonStyle" />
+            android:padding="5dp">
+            <Button
+                android:id="@+id/Tools_QuantityRename"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="@string/content_tools_piliangcmm"
+                android:layout_marginEnd="5dp"
+                android:textColor="#000000"
+                tools:ignore="ButtonStyle" />
 
-        <Button
-            android:id="@+id/Tools_QuantityReencode"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/shape"
+            <Button
+                android:id="@+id/Tools_QuantityReencode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/shape"
+                android:gravity="center"
+                android:text="@string/content_tools_piliangzhbm"
+                android:textColor="#000000"
+                tools:ignore="ButtonStyle" />
+
+
+        </TableRow>
+
+        <TableRow
             android:gravity="center"
-            android:text="@string/content_tools_piliangzhbm"
-            android:textColor="#000000"
-            tools:ignore="ButtonStyle" />
+            android:padding="5dp">
 
+            <Button
+                android:id="@+id/Tools_QuantityNormalize"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:gravity="center"
+                android:text="@string/content_tools_piliangggh"
 
-    </TableRow>
+                android:layout_marginEnd="5dp"
+                android:textColor="#000000"
+                tools:ignore="ButtonStyle" />
 
-    <TableRow
-        android:gravity="center"
-        android:padding="5dp">
+            <Button
+                android:id="@+id/Tools_TextSplit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:gravity="center"
+                android:text="@string/content_tools_wenbenchaifen"
+                android:textColor="#000000"
+                tools:ignore="ButtonStyle" />
 
-        <Button
-            android:id="@+id/Tools_QuantityNormalize"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/shape"
+        </TableRow>
+
+        <TableRow
             android:gravity="center"
-            android:text="@string/content_tools_piliangggh"
+            android:padding="5dp">
 
-            android:layout_marginEnd="5dp"
-            android:textColor="#000000"
-            tools:ignore="ButtonStyle" />
+            <Button
+                android:id="@+id/Tools_TextMerge"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:gravity="center"
+                android:text="@string/content_tools_wenbenzhenghe"
 
-        <Button
-            android:id="@+id/Tools_TextSplit"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape"
-            android:gravity="center"
-            android:text="@string/content_tools_wenbenchaifen"
-            android:textColor="#000000"
-            tools:ignore="ButtonStyle" />
+                android:layout_marginEnd="5dp"
+                android:textColor="#000000"
+                tools:ignore="ButtonStyle" />
 
-    </TableRow>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:gravity="center"
+                android:textColor="#000000"
+                tools:ignore="ButtonStyle" />
 
-    <TableRow
-        android:gravity="center"
-        android:padding="5dp">
-
-        <Button
-            android:id="@+id/Tools_TextMerge"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/shape"
-            android:gravity="center"
-            android:text="@string/content_tools_wenbenzhenghe"
-
-            android:layout_marginEnd="5dp"
-            android:textColor="#000000"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape"
-            android:gravity="center"
-            android:textColor="#000000"
-            tools:ignore="ButtonStyle" />
-
-    </TableRow>
-
-
-</TableLayout>
+        </TableRow>
+    </TableLayout>
 
 
 </LinearLayout>

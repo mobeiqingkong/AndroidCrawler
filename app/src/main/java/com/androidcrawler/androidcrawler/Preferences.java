@@ -3,10 +3,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Button;
 
-class Preferences {
+public class Preferences {
     private Context context;
 
-    Preferences(Context context)
+    public Preferences(Context context)
     {
         this.context=context;
     }
@@ -54,9 +54,9 @@ class Preferences {
         editor.putInt("SaveRule_SaveSpace"+RecordNum, SaveRule);
         editor.apply();//提交数据
     }
-    void FixData(int CrawlRule1,
-                 int EasyRuleGroup, int CrawlRule2,
-                 int EasyRuleGroup2, int SaveRule){
+    public void FixData(int CrawlRule1,
+                        int EasyRuleGroup, int CrawlRule2,
+                        int EasyRuleGroup2, int SaveRule){
         for(int RecordNum=1;RecordNum<=5;++RecordNum)
         {
             SharedPreferences preferences=context.getSharedPreferences("shared",Context.MODE_PRIVATE);
