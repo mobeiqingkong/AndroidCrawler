@@ -29,41 +29,47 @@
                     android:text="@string/tihuanguize"
                     android:layout_gravity="start"
                     android:textColor="#000000"/>
-                <TextView
+                <LinearLayout
+                    android:id="@+id/Replacelayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/tihuanqian"
-                    android:layout_gravity="start"
-                    android:textColor="#000000"/>
-                <EditText
-                    android:id="@+id/Tools_QuantityReplaceSelect"
-                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/xuanzebufen"
-                    android:autofillHints="@string/xuanzebufen"
-                    tools:targetApi="o"
-                    android:inputType="text" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tihuanhou"
-                    android:layout_gravity="start"
-                    android:textColor="#000000"/>
-                <EditText
-                    android:id="@+id/Tools_QuantityReplaceReplace"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/thbf"
-                    android:autofillHints="@string/thbf"
-                    tools:targetApi="o"
-                    android:inputType="text" />
-
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/AddReplaceRule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/zjgz"
+                        tools:ignore="ButtonStyle" />
+                    <Button
+                        android:id="@+id/RemoveReplaceRule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/scgz"
+                        tools:ignore="ButtonStyle" /></LinearLayout>
                 <CheckBox
+                    android:id="@+id/AutoNormalize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:checked="true"
-                    android:text="@string/zncf"/>
+                    android:text="@string/znggh"/>
+                <CheckBox
+                    android:id="@+id/AutoNormalizeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:checked="true"
+                    android:text="@string/qps"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,26 +115,6 @@
                     android:inputType="text" />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <Button
-                android:id="@+id/AddReplaceRule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:layout_marginBottom="5dp"
-                android:text="@string/zjgz"
-                    tools:ignore="ButtonStyle" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/scgz"
-                    tools:ignore="ButtonStyle" /></LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"

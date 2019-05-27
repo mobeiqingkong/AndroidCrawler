@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.MainFragment, quickCrawlerFragment).commitAllowingStateLoss();
+        currentFragment=quickCrawlerFragment;
 
         Toolbar toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,7 +78,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else if(quickCrawlerFragment.isHidden()){
+            switchFragment(quickCrawlerFragment).commitAllowingStateLoss();
+        }
+        else {
             this.moveTaskToBack(true);
         }
     }
@@ -173,6 +178,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if (id==R.id.nav_About) {
             Intent intent = new Intent("android.intent.action.about");
             startActivity(intent);
+        }
+        else if (id==R.id.nav_Exit) {
+            System.exit(0);
         }
         return true;
     }

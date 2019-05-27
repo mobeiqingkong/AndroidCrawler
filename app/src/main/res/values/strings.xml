@@ -103,5 +103,7 @@
     <string name="poem">将进酒，杯莫停\n</string>
     <string name="PoemAuthor">－李白《将进酒》</string>
     <string name="setting">设置</string>
+    <string name="znggh">智能规格化</string>
+    <string name="qps">去除快速爬虫爬取的篇数</string>
 
 </resources>

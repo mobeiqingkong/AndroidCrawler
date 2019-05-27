@@ -290,7 +290,7 @@ class Tools {
     }
     */
     //批量规格化
-    void Normalize(String path, String RegRule, String AfterReplacce, int SaveMethod, String RenameAdd) {
+    void Normalize(String path, LinkedList<String> RegRule, LinkedList<String> AfterReplacce, int SaveMethod, String RenameAdd) {
 
         if(path.endsWith("/")){
             path=path.substring(0,path.length()-1);}
@@ -317,13 +317,19 @@ class Tools {
             {
                 //如果读到了，继续拼接
                 StringBuilder ReadOne=new StringBuilder();
-                    if(SaveMethod==0){
-                        SaveFile( ReadFileToString(file.getPath()).replaceAll(RegRule,AfterReplacce),file.getPath()+".Normalizetmp");
-                        File F=new File(file.getPath()+".bak.txt") ;
+                String Content=ReadFileToString(file.getPath());
+
+
+                        for(int i=0;i<RegRule.size();i++){
+                            Content= Content.replaceAll(RegRule.get(i),AfterReplacce.get(i));
+                        }
+                        if(SaveMethod==0){
+                        SaveFile( Content,file.getPath()+".Normalizetmp");
+                        File F=new File(file.getPath()+".Normalizetmp") ;
                         F.renameTo(file);
                     }
                     else if(SaveMethod==1){
-                        SaveFile( ReadFileToString(file.getPath()).replaceAll(RegRule,AfterReplacce),file.getPath()+RenameAdd);}
+                        SaveFile( Content,file.getPath()+RenameAdd);}
                 }
             }}
     //文本拆分
