@@ -1,26 +1,17 @@
 package com.androidcrawler.androidcrawler;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.xml.transform.Result;
 
 class Tools {
     //判断编码格式方法
@@ -141,6 +132,8 @@ class Tools {
             while ((thisLine = In.readLine()) != null) {
                 Result.append(thisLine);
                 Result.append("\n");
+                //使用拼接会每次new一个StringBuilder，最后会内存泄漏
+                //Test+=thisLine+"\n";
             }
             In.close();
         } catch (IOException e) {
@@ -156,13 +149,12 @@ class Tools {
         }
         return Result.toString();
     }
-    //重命名
-    int RenameAllFile(String TXTPath, String RegRule, String AfterReplacce, int IfContainDirectory) {
+    //批量重命名
+    void RenameAllFile(String TXTPath, String RegRule, String AfterReplacce, int IfContainDirectory) {
         if(TXTPath.endsWith("/")){
             TXTPath=TXTPath.substring(0,TXTPath.length()-1);}
         //获取文件夹下的所有文件(正确理解Java的文件:文件和文件夹)
         String NewName;
-        int Result = -1;
         //TXTPath=TXTPath.replaceAll("([^\\s\\S]|([\\t\\s\\n])+)","");
         Log.d("这是传递过来的TXTPath路径:", TXTPath);
         File f = new File(TXTPath);
@@ -177,12 +169,12 @@ class Tools {
             files = f.listFiles();
         }
             for (File file : files) {
-                //如果是目录则返回遍历函数
+                //如果是目录则递归
                 // if (file.exists() && file.isDirectory()) {
-                if (file.exists() && file.isDirectory()) {
+                if (file.isDirectory()) {
                     if (IfContainDirectory == 1) {
                         //如果选择了方法1，则遍历所有子目录下的.txt文件
-                        RenameAllFile(file.getName(), RegRule, AfterReplacce, IfContainDirectory);
+                        RenameAllFile(file.getPath(), RegRule, AfterReplacce, IfContainDirectory);
                     }
                     //是文件,并且后缀.txt
                     //} else if((file.getName()).endsWith(".txt")){
@@ -192,13 +184,11 @@ class Tools {
                     Log.d("重命名测试:", NewName);
                     if (file.renameTo(new File(f.getPath() + "/" + NewName))) {
                         Log.d("重命名成功,重命名后:", file.getName());
-                        Result = 0;
                     } else {
                         Log.d("重命名失败,重命名后:", file.getName());
                     }
                 }
             }
-            return Result;
     }
 
     //批量重编码原写法
@@ -316,10 +306,7 @@ class Tools {
             else if (file.getPath().toLowerCase().endsWith(".txt"))
             {
                 //如果读到了，继续拼接
-                StringBuilder ReadOne=new StringBuilder();
                 String Content=ReadFileToString(file.getPath());
-
-
                         for(int i=0;i<RegRule.size();i++){
                             Content= Content.replaceAll(RegRule.get(i),AfterReplacce.get(i));
                         }
@@ -409,6 +396,14 @@ class Tools {
             }
         }
     }
+
+
+
+
+
+
+
+
 
 
 

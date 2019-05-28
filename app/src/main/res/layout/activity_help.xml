@@ -12,7 +12,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <WebView
             android:id="@+id/HelpWebView"
-            android:text="@string/setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </ScrollView>

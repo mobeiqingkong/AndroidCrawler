@@ -61,28 +61,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
-
-    //读写权限
+    //读写权限及网络权限
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.INTERNET
     };
-    //请求状态码
-
-
-        //监听返回
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
+            //侧滑栏是打开的话，则关闭
             drawer.closeDrawer(GravityCompat.START);
         }
         else if(quickCrawlerFragment.isHidden()){
+            //快速爬虫界面被隐藏的话，切换到快速爬虫
             switchFragment(quickCrawlerFragment).commitAllowingStateLoss();
         }
         else {
+            //否则最小化应用
             this.moveTaskToBack(true);
         }
     }
@@ -195,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             transaction.add(R.id.MainFragment, targetFragment,targetFragment.getClass().getName());
         } else {
+           //核心语法，隐藏已有的Fragment,显示目标Fragment
             transaction
                     .hide(currentFragment)
                     .show(targetFragment);

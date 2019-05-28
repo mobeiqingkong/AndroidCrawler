@@ -27,22 +27,6 @@ public class Tools_QuantityNormalizeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools__quantity_normalize);
            inited();
-//        Button AddReplaceRule = findViewById(R.id.AddReplaceRule);
-//        Button ReplaceStart=findViewById(R.id.ReplaceStart);
-//
-//        AddReplaceRule.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
-//        ReplaceStart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Thread StrartReplace=new Thread(RePlace);
-//                StrartReplace.start();
-//            }
-//        });
-
     }
 
     Tools tools=new Tools();
@@ -123,7 +107,7 @@ public class Tools_QuantityNormalizeActivity extends AppCompatActivity {
     }
 
     private void addBtn() {//动态添加按钮
-        //添加承载两个按钮的LinearLayout
+        //添加承载的LinearLayout
         LinearLayout linear_btn = new LinearLayout(this);
         linear_btn.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams RuleParam = new LinearLayout.LayoutParams(
@@ -139,28 +123,28 @@ public class Tools_QuantityNormalizeActivity extends AppCompatActivity {
         tip.setLayoutParams(tips);
         tip.setText("替换前");
         tip.setTextColor(Color.parseColor("#000000"));
-        linear_btn.addView(tip);//把btnShow添加到linear_btn中
+        linear_btn.addView(tip);//把tip添加到linear_btn中
         //添加EditText
         EditText BeforeReplace=new EditText(this);
         LinearLayout.LayoutParams BeforeReplaces=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         BeforeReplace.setLayoutParams(BeforeReplaces);
         BeforeReplace.setHint("选择部分");
-        linear_btn.addView(BeforeReplace);//把btnShow添加到linear_btn中
-        EditTextSelect.add(BeforeReplace);//把btnShow添加到索引中
+        linear_btn.addView(BeforeReplace);//把BeforeReplace添加到linear_btn中
+        EditTextSelect.add(BeforeReplace);//把BeforeReplace添加到索引中
         //添加TextView
         TextView tip2=new TextView(this);
         LinearLayout.LayoutParams tips2=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         tip2.setLayoutParams(tips2);
         tip2.setText("替换后");
         tip2.setTextColor(Color.parseColor("#000000"));
-        linear_btn.addView(tip2);//把btnShow添加到linear_btn中
+        linear_btn.addView(tip2);//把tip2添加到linear_btn中
         //添加EditText
         EditText AfterReplace=new EditText(this);
         LinearLayout.LayoutParams AfterReplaces=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         AfterReplace.setLayoutParams(AfterReplaces);
         AfterReplace.setHint("替换部分");
-        linear_btn.addView(AfterReplace);//把btnShow添加到linear_btn中
-        EditTextAfter.add(AfterReplace);//把btnShow添加到索引中
+        linear_btn.addView(AfterReplace);//把AfterReplace添加到linear_btn中
+        EditTextAfter.add(AfterReplace);//把AfterReplace添加到索引中
 
         linearLayout.addView(linear_btn);//把linear_btn添加到外层linearLayout中
     }
@@ -172,9 +156,8 @@ public class Tools_QuantityNormalizeActivity extends AppCompatActivity {
         if((i=EditTextSelect.size())>0&&(EditTextSelect.size()==EditTextAfter.size())){
            EditTextSelect.remove(i-1);//从索引中移除被删除的Button
             EditTextAfter.remove(i-1);//从索引中移除被删除的Button
-            linearLayout.removeView(linearLayout.findViewWithTag("RuleNum"+num));//在外出linearLayout删除内部指定位置所有控件
-            //
-            num-=num;
+            linearLayout.removeView(linearLayout.findViewWithTag("RuleNum"+num));//删除之前最后设置的Tag的规则
+            num-=1;
         }
     }
 }

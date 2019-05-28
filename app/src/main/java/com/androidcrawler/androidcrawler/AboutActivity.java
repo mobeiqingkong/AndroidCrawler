@@ -33,7 +33,6 @@ public class AboutActivity extends AppCompatActivity {
         Poem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Log.d("点击了古诗控件","，改变语句");
                 TextView Poem=findViewById(R.id.Poem);
                 TextView PoemAuthor=findViewById(R.id.PoemAuthor);
@@ -47,15 +46,8 @@ public class AboutActivity extends AppCompatActivity {
                     String s;
                     int m=1;
                     while((s=br.readLine())!=null)
-                    {
-                        if(m==i)
-                        {
-                            break;
-                        }
-                        else{
-                            m++;
-                        }
-                    }
+                    {if(m==i) {break; }
+                        else{m++; } }
                     Po.close();
                     br.close();
                     Poem.setText(Objects.requireNonNull(s).replaceAll("－.*","").replaceAll("。","。\n"));

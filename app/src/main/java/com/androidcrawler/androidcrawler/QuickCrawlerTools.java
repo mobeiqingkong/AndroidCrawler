@@ -71,7 +71,7 @@ public class QuickCrawlerTools {
         }
         String RegCrawlRule=RegCrawl.getText().toString();
         String NotRegCrawlRule=NotRegCrawl.getText().toString();
-        //如果剔除规则不设置，采用[^\s\S]，即匹配不到任何值
+        //如果剔除规则不设置，采用[^\s\S]，即匹配不到任何值，否则会匹配所有字符串
         if(NotRegCrawlRule.trim().equals("")) {
             NotRegCrawlRule = "[^\\s\\S]";
         }
@@ -92,7 +92,7 @@ public class QuickCrawlerTools {
 
 
     //第一层爬取
-    public int TitleCrawl(View view,String url,int NovelNum,String FileName,String RegCrawlRule,String NotRegCrawlRule){
+    private int TitleCrawl(View view, String url, int NovelNum, String FileName, String RegCrawlRule, String NotRegCrawlRule){
         EditText Head=view.findViewById(R.id.Head);
         final EditText Flag1=view.findViewById(R.id.Flag1);
         final EditText Sleep1=view.findViewById(R.id.Sleep1);
@@ -127,15 +127,18 @@ public class QuickCrawlerTools {
                     else if (CrawlRule1.getCheckedRadioButtonId()==R.id.IfEasyRule) {
                         //简单爬取，只对class="",id=""类的有效，适用范围较小，对小白很友好
                         if (EasyRuleGroup.getCheckedRadioButtonId() == R.id.EasyRuleid) {
+                            //jsoup选择器的id获取方式
                             NovelsTitle = doc.select("#" + Flag1.getText().toString().replace(" ", ".")); }
                         else if (EasyRuleGroup.getCheckedRadioButtonId() == R.id.EasyRuleclass)
                         {
+                            //jsoup选择器的class获取方式
                             NovelsTitle = doc.select("." + Flag1.getText().toString().replace(" ", "."));
                         }
                     }
                     if(NovelsTitle!=null&&!NovelsTitle.isEmpty()){
                         for (Element NovelTitle:NovelsTitle) {
                             if (RegCrawlRulePa.matcher(NovelTitle.text()).find() && !NotRegCrawlRulePa.matcher(NovelTitle.text()).find()) {
+                                //如果正则表达式爬取规则匹配到且正则表达式剔除规则没有匹配到
                                 tools.SaveFile("第" + NovelNum + "篇:" + NovelTitle.text()
                                         , FileName);
                                 ContentCrawl(view,NovelTitle.text(), NovelTitle.select("a").attr("abs:href"), FileName);
@@ -154,11 +157,10 @@ public class QuickCrawlerTools {
         return NovelNum;
     }
     //第二层爬虫，由第一层匹配的文本，超链接，保存名称构成
-    public void ContentCrawl(View view,String NovelTitle,String url,String SaveName){
+    private void ContentCrawl(View view, String NovelTitle, String url, String SaveName){
         EditText Head=view.findViewById(R.id.Head);
         final EditText Flag2=view.findViewById(R.id.Flag2);
         final EditText Sleep2=view.findViewById(R.id.Sleep2);
-
         RadioGroup CrawlRule2=view.findViewById(R.id.CrawlRule2);
         RadioGroup EasyRuleGroup2=view.findViewById(R.id.EasyRuleGroup2);
         int TryNum2=10;
@@ -173,7 +175,6 @@ public class QuickCrawlerTools {
                 //如果返回WEBCODE200，则可以爬取
                 Elements NovelContent=null;
                 if (connect.execute().statusCode() == 200) {
-
                     //智能爬取，获取文本数最多的一个元素
                     if (CrawlRule2.getCheckedRadioButtonId() == R.id.IfAutoCrawl2) {
                         String NovelBodyContent = "";
@@ -204,13 +205,6 @@ public class QuickCrawlerTools {
                         }
                         if(NovelContent!=null){
                             tools.SaveFile(NovelContent.text(),SaveName);}
-                        /*
-                        if(i==1&&NovelContent.text().isEmpty()==false){
-                            SaveFile(NovelContent.text());
-                        }
-                        else if(i==2&&NovelContent.text().isEmpty()==false){
-                            //SaveFile2(NovelContent.text());
-                        }*/
                     }
                 }
                 break;
@@ -339,11 +333,12 @@ public class QuickCrawlerTools {
             }
         }
         //备份到本地SD卡
+        //如果根目录下已有share.xml，追加.xml判断，如果没有，则写入
         else if(OperateMethod ==3) {
             String FileNameAdd=".xml";
             File DataBackup = new File(BackupDataPath);
             while(DataBackup.exists()){
-                BackupDataPath=BackupDataPath+FileNameAdd;
+                 BackupDataPath=BackupDataPath+FileNameAdd;
                 DataBackup = new File(BackupDataPath);
             }
             tools.SaveFile(tools.ReadFileToString(DataPath),BackupDataPath);
@@ -351,10 +346,12 @@ public class QuickCrawlerTools {
 
         }
         //从SD卡恢复
+        //如果sdcard根目录下有share.xml，则删除shared_prefs数据路径下的share.xml，并将用户sdcard根目录下的share.xml写入shared_prefs数据路径下
+
         else if(OperateMethod == 4) {
             File DataBackup=new File(BackupDataPath);
             if(DataBackup.exists()){
-                Data.delete();
+                  Data.delete();
                 tools.SaveFile(tools.ReadFileToString(BackupDataPath),DataPath);
                 Toast.makeText(view.getContext(),"恢复成功，重启应用生效",Toast.LENGTH_SHORT).show();
 

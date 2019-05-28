@@ -58,9 +58,6 @@ public class Tools_QuantityRenameActivity extends AppCompatActivity {
             String TXTPath=SourcePath.getText().toString();
             if(TXTPath.endsWith("/")){
                 TXTPath=TXTPath.substring(0,TXTPath.length()-1);}
-            Log.d("这是直接获取的TXTPath:",TXTPath);
-            String a=TXTPath.replaceAll("/([\\s\\t]|[^\\s\\S])","a");
-            Log.d("这是替换后TXTPath路径a:",a);
             EditText Tools_QuantityRenameSelect=findViewById(R.id.Tools_QuantityRenameSelect);
             String Select=Tools_QuantityRenameSelect.getText().toString();
             EditText Tools_QuantityRenameReplace=findViewById(R.id.Tools_QuantityRenameReplace);
