@@ -140,7 +140,8 @@ public class Tools_QuantityNormalizeActivity extends AppCompatActivity {
         linear_btn.addView(tip2);//把tip2添加到linear_btn中
         //添加EditText
         EditText AfterReplace=new EditText(this);
-        LinearLayout.LayoutParams AfterReplaces=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams AfterReplaces=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
         AfterReplace.setLayoutParams(AfterReplaces);
         AfterReplace.setHint("替换部分");
         linear_btn.addView(AfterReplace);//把AfterReplace添加到linear_btn中

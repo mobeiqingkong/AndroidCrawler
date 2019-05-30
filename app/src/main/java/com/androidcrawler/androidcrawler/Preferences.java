@@ -5,7 +5,6 @@ import android.widget.Button;
 
 public class Preferences {
     private Context context;
-
     public Preferences(Context context)
     {
         this.context=context;
@@ -71,4 +70,36 @@ public class Preferences {
             editor.apply();//提交数据
         }
     }
+
+    public void SeniorCrawlerWebSave(
+            String SeniorCrawlerHead,
+            String SeniorCrawlerWebFirst,
+            boolean SeniorCrawlerCrawOnePage,
+            String SeniorCrawlerWebBegin,
+            String SeniorCrawlerBeginPage,
+            String SeniorCrawlerFinalPage,
+            String SeniorCrawlerWebEnd
+    ){
+        SharedPreferences sharedPreferences=context.getSharedPreferences("shared",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("SeniorCrawlerHead",SeniorCrawlerHead);
+        editor.putString("SeniorCrawlerWebFirst",SeniorCrawlerWebFirst);
+        editor.putBoolean("SeniorCrawlerCrawOnePage",SeniorCrawlerCrawOnePage);
+        editor.putString("SeniorCrawlerWebBegin",SeniorCrawlerWebBegin);
+        editor.putString("SeniorCrawlerBeginPage",SeniorCrawlerBeginPage);
+        editor.putString("SeniorCrawlerFinalPage",SeniorCrawlerFinalPage);
+        editor.putString("SeniorCrawlerWebEnd",SeniorCrawlerWebEnd);
+        editor.apply();
+    }
+
+
+    public void SeniorSaveRuleSave(String SeniorSaveName,String SeniorSaveRule,String SeniorSaveAddRule){
+        SharedPreferences shared=context.getSharedPreferences("shared",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=shared.edit();
+        editor.putString("SeniorSaveName",SeniorSaveName);
+        editor.putString("SeniorSaveRule",SeniorSaveRule);
+        editor.putString("SeniorSaveAddRule",SeniorSaveAddRule);
+        editor.apply();
+    }
+
 }

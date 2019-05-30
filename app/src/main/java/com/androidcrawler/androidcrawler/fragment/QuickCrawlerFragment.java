@@ -30,7 +30,7 @@ public class QuickCrawlerFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button BeginCrawl = view.findViewById(R.id.BeginCrawl);
-        Button ClearMain = view.findViewById(R.id.ClearMain);
+        Button CleanMain = view.findViewById(R.id.CleanMain);
         final RadioGroup CrawlRule1=view.findViewById(R.id.CrawlRule1);
         final RadioGroup CrawlRule2=view.findViewById(R.id.CrawlRule2);
         final RadioGroup SaveRule=view.findViewById(R.id.SaveRule);
@@ -84,7 +84,7 @@ public class QuickCrawlerFragment extends Fragment {
                 }
             });
             //清除所有输入
-            ClearMain.setOnClickListener(new View.OnClickListener() {
+            CleanMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     quickCrawlerTools.OperateSetting(getView(),0,2);

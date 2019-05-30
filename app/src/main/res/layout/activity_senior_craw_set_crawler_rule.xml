@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SeniorCrawler.SeniorCrawSetCrawlerRuleActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <LinearLayout
+            android:id="@+id/AddViewSpace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000">
+            <Button
+                android:id="@+id/AddNewCrawlerRule"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape"
+                style="@style/Widget.AppCompat.ButtonBar"
+                android:text="增加一层规则" />
+            <Button
+                android:id="@+id/DeleteCrawlerRule"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="1dp"
+                android:width="0dp"
+                android:background="@drawable/shape"
+                style="@style/Widget.AppCompat.ButtonBar"
+                android:text="删除一层规则" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="40dp"
+            android:textColor="#000000">
+            <Button
+                android:id="@+id/SeniorCrawlerSetConfirm"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape"
+                style="@style/Widget.AppCompat.ButtonBar"
+                android:text="@string/confirm" />
+            <Button
+                android:id="@+id/SeniorCrawlerSetCancle"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="1dp"
+                android:background="@drawable/shape"
+                style="@style/Widget.AppCompat.ButtonBar"
+                android:text="@string/cancle" />
+            <Button
+                android:id="@+id/SeniorCrawlerSetClean"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="1dp"
+                android:width="0dp"
+                android:background="@drawable/shape"
+                style="@style/Widget.AppCompat.ButtonBar"
+                android:text="@string/clean" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>

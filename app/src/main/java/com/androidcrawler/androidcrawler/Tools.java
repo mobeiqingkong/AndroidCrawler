@@ -13,9 +13,9 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Tools {
+public class Tools {
     //判断编码格式方法
-    private String getFilecharset(String SourceFilePath) {
+    public String getFilecharset(String SourceFilePath) {
         File SourceFile=new File(SourceFilePath);
 
         String charset = "GBK";
@@ -82,7 +82,7 @@ class Tools {
 
 
     //保存文件到sd卡
-    void SaveFile(String content, String PathAndSaveName) {
+    public void SaveFile(String content, String PathAndSaveName) {
         File file = new File(PathAndSaveName);
        /* if(SaveMethod==2&&file.exists()){
             SaveFile(content,SaveName+SaveNameAdd.getText().toString(),SaveMethod);

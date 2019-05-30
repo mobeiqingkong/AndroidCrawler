@@ -296,8 +296,7 @@ public class QuickCrawlerTools {
             if(Data.exists()){
                 Preference=view.getContext().getSharedPreferences("shared", Context.MODE_PRIVATE);
                 // Map<String, String> map=new HashMap<String, String>();
-                Head.setText(Preference.getString("Head_SaveSpace"+RecordNum,"")
-                );
+                Head.setText(Preference.getString("Head_SaveSpace"+RecordNum,""));
                 WebFirst.setText(Preference.getString("WebFirst_SaveSpace"+RecordNum,""));
                 WebBegin.setText(Preference.getString("WebBegin_SaveSpace"+RecordNum,""));
                 BeginPage.setText(Preference.getString("BeginPage_SaveSpace"+RecordNum,""));

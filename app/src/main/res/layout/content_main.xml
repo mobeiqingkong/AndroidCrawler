@@ -135,7 +135,7 @@
             android:inputType="text"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:autofillHints="@string/content_main_TextViewFirst"
+            android:autofillHints="@string/content_main_houbiaoshi"
             tools:targetApi="o" />
         <RadioGroup
             android:id="@+id/CrawlRule1"
@@ -363,7 +363,6 @@
                 android:autofillHints="@string/SleepTime2"
                 tools:targetApi="o" />
         </LinearLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -459,7 +458,7 @@
                 style="@style/Widget.AppCompat.ButtonBar"
                 android:text="@string/FixSetting" />
             <Button
-                android:id="@+id/ClearMain"
+                android:id="@+id/CleanMain"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -469,7 +468,7 @@
                 android:width="0dp"
                 android:background="@drawable/shape"
                 style="@style/Widget.AppCompat.ButtonBar"
-                android:text="@string/ClearSetting" />
+                android:text="@string/cleanSetting" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

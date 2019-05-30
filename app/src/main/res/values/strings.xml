@@ -36,7 +36,7 @@
     <string name="content_main_tichuguize">正则表达式剔除规则(为空则不剔除):</string>
     <string name="content_main_tichuguizemh">正则表达式剔除规则</string>
     <string name="content_main_neirongbiaoshi">内容标识:</string>
-    <string name="ClearSetting">清空设置</string>
+    <string name="cleanSetting">清空设置</string>
     <string name="FixSetting">修复数据</string>
     <string name="BeginCrawler">开始爬取</string>
     <string name="content_main_zhuijiahouzhui">新文件追加后缀,默认为.txt</string>
@@ -105,5 +105,12 @@
     <string name="setting">设置</string>
     <string name="znggh">智能规格化</string>
     <string name="qps">去除快速爬虫爬取的篇数</string>
+    <string name="confirm">确认</string>
+    <string name="cancle">取消</string>
+    <string name="clean">清空</string>
+    <string name="CrawOnePage">只爬取一页</string>
+    <string name="WriteCrawlerNum">写入文件时追加篇数</string>
+    <string name="AutoSet">智能设置</string>
+    <string name="class_">class</string>
 
 </resources>
