@@ -3,7 +3,6 @@ package com.androidcrawler.androidcrawler;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
-import android.text.Spannable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -22,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class QuickCrawlerTools {
     //开始爬取的预备工作
-    Tools tools=new Tools();
+    private Tools tools=new Tools();
     public void BeginCrawl(View view){
         final EditText WebFirst=view.findViewById(R.id.WebFirst);
         final EditText WebBegin=view.findViewById(R.id.WebBegin);
@@ -293,6 +292,7 @@ public class QuickCrawlerTools {
         }
         //从shared读取保存的信息
         else if(OperateMethod == 2) {
+            try{
             if(Data.exists()){
                 Preference=view.getContext().getSharedPreferences("shared", Context.MODE_PRIVATE);
                 // Map<String, String> map=new HashMap<String, String>();
@@ -329,6 +329,9 @@ public class QuickCrawlerTools {
                 Select.setChecked(true);
                 if(RecordNum!=0){
                     Toast.makeText(view.getContext(),"从"+RecordNum+"号位载入",Toast.LENGTH_SHORT).show(); }
+            }}
+            catch (Exception e){
+                Toast.makeText(view.getContext(),"载入错误，请修复数据",Toast.LENGTH_SHORT).show();
             }
         }
         //备份到本地SD卡

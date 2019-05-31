@@ -92,6 +92,14 @@ public class Preferences {
         editor.apply();
     }
 
+    public void SeniorSetRuleSave(String SeniorSaveName,String SeniorSaveRule,String SeniorSaveAddRule){
+        SharedPreferences shared=context.getSharedPreferences("shared",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=shared.edit();
+        editor.putString("SeniorSaveName",SeniorSaveName);
+        editor.putString("SeniorSaveRule",SeniorSaveRule);
+        editor.putString("SeniorSaveAddRule",SeniorSaveAddRule);
+        editor.apply();
+    }
 
     public void SeniorSaveRuleSave(String SeniorSaveName,String SeniorSaveRule,String SeniorSaveAddRule){
         SharedPreferences shared=context.getSharedPreferences("shared",Context.MODE_PRIVATE);

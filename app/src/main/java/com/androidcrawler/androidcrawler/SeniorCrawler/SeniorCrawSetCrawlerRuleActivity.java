@@ -1,5 +1,6 @@
 package com.androidcrawler.androidcrawler.SeniorCrawler;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,11 +18,12 @@ import android.widget.TextView;
 import com.androidcrawler.androidcrawler.R;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
 
-    LinkedList<EditText> LLFlag=new LinkedList<>();
     LinkedList<RadioGroup> LLRGCrawRuleType=new LinkedList<>();
+    LinkedList<EditText> LLFlag=new LinkedList<>();
     LinkedList<RadioGroup> LLRGCrawRule=new LinkedList<>();
     LinkedList<RadioGroup> LLRGEasyRule=new LinkedList<>();
     LinkedList<EditText> LLSleepTime=new LinkedList<>();
@@ -36,6 +38,22 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
         final LinearLayout AddViewSpace=findViewById(R.id.AddViewSpace);
         Button AddNewCrawlerRule=findViewById(R.id.AddNewCrawlerRule);
         Button DeleteCrawlerRule=findViewById(R.id.DeleteCrawlerRule);
+        Button SeniorCrawlerSetConfirm=findViewById(R.id.SeniorCrawlerSetConfirm);
+        Button SeniorCrawlerSetCancle=findViewById(R.id.SeniorCrawlerSetCancle);
+        Button SeniorCrawlerSetClean=findViewById(R.id.SeniorCrawlerSetClean);
+
+        SharedPreferences sharedPreferences=getSharedPreferences("shared",MODE_PRIVATE);
+        int i=0;
+        while(i<Integer.parseInt(Objects.requireNonNull(sharedPreferences.getString("SeniorCrawRuleNum", "0"))))
+        {
+            AddNewCrawlerRule.callOnClick();
+            sharedPreferences.getString("","");
+            i+=1;
+        }
+
+
+
+
 
         AddNewCrawlerRule.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,15 +69,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
 
                 linearLayout.setLayoutParams(params);
 
-                /*
-                //添加TextView
-                TextView tip2=new TextView(v.getContext());
-                LinearLayout.LayoutParams tips2=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                tip2.setLayoutParams(tips2);
-                tip2.setText("替换后");
-                linearLayout.addView(tip2);//把tip2添加到linear_btn中
-*/
-                //爬取规则
+                //爬取规则类型
                 TextView CrawRuleTips=new TextView(v.getContext());
                 CrawRuleTips.setText("爬取标识:");
                 LinearLayout.LayoutParams CrawRuletips=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -71,7 +81,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                 CrawRuleUrl.setTag("外链爬取");
                 RadioButton CrawRuleContent = new RadioButton(v.getContext());
                 CrawRuleContent.setText("内容爬取");
-                CrawRuleUrl.setTag("外链爬取");
+                CrawRuleUrl.setTag("内容爬取");
 
                 RadioGroup RGCrawRuleType=new RadioGroup(v.getContext());
                 ViewGroup.LayoutParams RGCrawRuletype=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -83,6 +93,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                 RGCrawRuleType.addView(CrawRuleContent);
 
                 CrawRuleUrl.setChecked(true);
+                RGCrawRuleType.setId(Rulenum*1000+1);
                 LLRGCrawRuleType.add(RGCrawRuleType);
                 linearLayout.addView(RGCrawRuleType);
 
@@ -110,6 +121,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                 RGCrawRule.addView(Select);
 
                 Easy.setChecked(true);
+                RGCrawRule.setId(Rulenum*1000+2);
                 LLRGCrawRule.add(RGCrawRule);
                 linearLayout.addView(RGCrawRule);
 
@@ -136,6 +148,8 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                 RGEasyRule.addView(EasyRule_class);
 
                 EasyRule_id.setChecked(true);
+
+                RGEasyRule.setId(Rulenum*1000+3);
                 LLRGEasyRule.add(RGEasyRule);
                 linearLayout.addView(RGEasyRule);
 
@@ -147,6 +161,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 ETFlag.setLayoutParams(etFlag);
                 ETFlag.setTextColor(Color.BLACK);
+                ETFlag.setId(Rulenum*1000+4);
                 LLFlag.add(ETFlag);
                 linearLayout.addView(ETFlag);
 
@@ -158,6 +173,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams etSleepTime=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 ETSleepTime.setLayoutParams(etSleepTime);
+                ETSleepTime.setId(Rulenum*1000+5);
                 LLSleepTime.add(ETSleepTime);
                 linearLayout.addView(ETSleepTime);
 
@@ -166,6 +182,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams etRegCrawlerRule=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 ETRegCrawlerRule.setLayoutParams(etRegCrawlerRule);
+                ETRegCrawlerRule.setId(Rulenum*1000+6);
                 LLRegCrawlerRule.add(ETRegCrawlerRule);
                 linearLayout.addView(ETRegCrawlerRule);
 
@@ -174,6 +191,7 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams etUnRegCrawlerRule=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 ETUnRegCrawlerRule.setLayoutParams(etUnRegCrawlerRule);
+                ETUnRegCrawlerRule.setId(Rulenum*1000+7);
                 LLUnRegCrawlerRule.add(ETUnRegCrawlerRule);
                 linearLayout.addView(ETUnRegCrawlerRule);
 
@@ -201,5 +219,55 @@ public class SeniorCrawSetCrawlerRuleActivity extends AppCompatActivity {
             }
         });
 
+
+        //确认提交
+        SeniorCrawlerSetConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences=getSharedPreferences("shared",MODE_PRIVATE);
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                int i=0;
+                while (i<LLRGCrawRuleType.size()){
+                    editor.putString("RGCrawRuleType_"+i, String.valueOf(LLRGCrawRuleType.get(i)));
+                    editor.putString("Flag_"+i, String.valueOf(LLFlag.get(i)));
+                    editor.putString("RGCrawRule_"+i, String.valueOf(LLRGCrawRule.get(i)));
+                    editor.putString("RGEasyRule_"+i, String.valueOf(LLRGEasyRule.get(i)));
+                    editor.putString("SleepTime_"+i, String.valueOf(LLSleepTime.get(i)));
+                    editor.putString("RegCrawlerRule_"+i, String.valueOf(LLRegCrawlerRule.get(i)));
+                    editor.putString("UnRegCrawlerRule_"+i, String.valueOf(LLUnRegCrawlerRule.get(i)));
+                    i+=1;
+                }
+                editor.putString("SeniorCrawRuleNum",String.valueOf(LLRGCrawRuleType.size()));
+                editor.apply();
+            }
+        });
+
+        //取消
+        SeniorCrawlerSetCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+        //清空所有规则
+        SeniorCrawlerSetClean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                while (Rulenum>0){
+                    AddViewSpace.removeView(AddViewSpace.findViewWithTag("AllRulenum_"+Rulenum));
+                    Rulenum-=1;
+                    Log.d("Rulenum",""+Rulenum);
+                    LLFlag.remove(Rulenum);
+                    LLRGCrawRuleType.remove(Rulenum);
+                    LLRGCrawRule.remove(Rulenum);
+                    LLRGEasyRule.remove(Rulenum);
+                    LLSleepTime.remove(Rulenum);
+                    LLRegCrawlerRule.remove(Rulenum);
+                    LLUnRegCrawlerRule.remove(Rulenum);
+                }
+            }
+        });
     }
 }
