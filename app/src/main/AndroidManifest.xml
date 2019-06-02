@@ -15,7 +15,12 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SeniorCrawler.SeniorCrawSetSaveRuleActivity"></activity>
+        <service
+            android:name=".Service.CrawlerService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".SeniorCrawler.SeniorCrawSetSaveRuleActivity" />
         <activity android:name=".SeniorCrawler.SeniorCrawSetCrawlerRuleActivity" />
         <activity android:name=".SeniorCrawler.SeniorCrawSetWebActivity" />
         <activity android:name=".AboutActivity">

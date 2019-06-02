@@ -112,5 +112,6 @@
     <string name="WriteCrawlerNum">写入文件时追加篇数</string>
     <string name="AutoSet">智能设置</string>
     <string name="class_">class</string>
+    <string name="StopCrawler">停止爬取</string>
 
 </resources>

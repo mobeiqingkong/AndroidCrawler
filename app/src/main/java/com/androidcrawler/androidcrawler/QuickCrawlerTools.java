@@ -3,6 +3,7 @@ package com.androidcrawler.androidcrawler;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -34,6 +35,7 @@ public class QuickCrawlerTools {
         final EditText SaveName=view.findViewById(R.id.SaveName);
         final EditText SaveNameAdd=view.findViewById(R.id.SaveNameAdd);
         String FileName=SaveName.getText().toString();
+        Log.d("打印快速爬虫工具下的WebFirst",WebFirst.getText().toString());
         String FileNameAdd=SaveNameAdd.getText().toString();
         String url;
 
@@ -150,7 +152,9 @@ public class QuickCrawlerTools {
             } catch (Exception e) {
                 //每次请求失败，重试次数+1，最多10次
                 TryNum += 1;
+                Log.d("爬取头部这里出错",e.toString());
                 Toast.makeText(view.getContext(),"请求页面超时,第" + TryNum + "次重复请求"+e.getMessage(),Toast.LENGTH_SHORT).show();
+
             }
         }
         return NovelNum;
@@ -209,6 +213,7 @@ public class QuickCrawlerTools {
                 break;
             } catch (Exception e) {
                 TryNum += 1;
+                Log.d("爬取内容这里出错",e.toString());
                 Toast.makeText(view.getContext(), "请求页面超时,第" + TryNum + "次重复请求"+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }

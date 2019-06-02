@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SettingFragment settingFragment=new SettingFragment();
     QuickCrawlerTools quickCrawlerTools =new QuickCrawlerTools();
     Fragment  currentFragment=new Fragment();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
@@ -84,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             this.moveTaskToBack(true);
         }
     }
-
 
 
     //监听右上角菜单

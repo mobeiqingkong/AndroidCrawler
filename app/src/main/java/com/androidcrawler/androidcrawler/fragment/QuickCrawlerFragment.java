@@ -1,13 +1,19 @@
 package com.androidcrawler.androidcrawler.fragment;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -17,9 +23,15 @@ import android.widget.Toast;
 import com.androidcrawler.androidcrawler.QuickCrawlerTools;
 import com.androidcrawler.androidcrawler.Preferences;
 import com.androidcrawler.androidcrawler.R;
+import com.androidcrawler.androidcrawler.Service.CrawlerService;
+
+import java.util.Objects;
+
+import static android.content.Context.BIND_AUTO_CREATE;
 
 public class QuickCrawlerFragment extends Fragment {
     QuickCrawlerTools quickCrawlerTools =new QuickCrawlerTools();
+    //CrawlerService.MyBinder myBinder;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +53,29 @@ public class QuickCrawlerFragment extends Fragment {
         final RadioGroup EasyRuleGroup=view.findViewById(R.id.EasyRuleGroup);
         final RadioGroup EasyRuleGroup2=view.findViewById(R.id.EasyRuleGroup2);
 
+
+
+        /*服务绑定部分
+        final ServiceConnection connection = new ServiceConnection() {
+            //当服务异常终止时会调用。注意，解除绑定服务时不会调用
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                Log.d("我的爬虫服务绑定","未绑定");
+            }
+            //和服务绑定成功后，服务会回调该方法
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                Log.d("我的爬虫服务绑定","已绑定");
+                //在Activity中调用Service里面的方法
+                myBinder = (CrawlerService.MyBinder) service;
+                //myBinder.startCrawler(view);
+            }
+        };
+
+
+        Intent bindIntent = new Intent(view.getContext(),CrawlerService.class);
+        Objects.requireNonNull(view.getContext()).bindService(bindIntent,connection, BIND_AUTO_CREATE);
+*/
 
 
         //采用选择器的方式显示相应参数，否则隐藏
@@ -74,15 +109,27 @@ public class QuickCrawlerFragment extends Fragment {
             if(!SaveMethodNewFile.isChecked()){
                 view.findViewById(R.id.NewFileAdd).setVisibility(View.GONE);
             }
-            //设置监听器，点击开始爬取抛出一个线程爬取
+            //设置监听器，点击开开启爬虫服务
             BeginCrawl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                     /*
+                    Log.d("点击到开始爬取了"," Intent bindIntent = new Intent(view.getContext(),CrawlerService.class)");
+                    myBinder.startCrawler(view);
+                      */
+
+
                     Thread REQ = new Thread(Req);
                     REQ.start();
                     Toast.makeText(getContext(), "爬取开始", Toast.LENGTH_SHORT).show();
+
+
                 }
             });
+
+
+
+
             //清除所有输入
             CleanMain.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,6 +187,7 @@ public class QuickCrawlerFragment extends Fragment {
                             Flag2Group.setVisibility(View.GONE);
                             view.findViewById(R.id.EasyRuleGroup2).setVisibility(View.GONE);
                             break;
+
                     }
                 }
             });
@@ -170,7 +218,8 @@ public class QuickCrawlerFragment extends Fragment {
         {
             Looper.prepare();
             try{
-                quickCrawlerTools.BeginCrawl(getView());}
+                quickCrawlerTools.BeginCrawl(getView());
+            }
             catch (Exception e)
             {
                 Toast.makeText(getContext(),"出现了问题:"+e.getMessage(),Toast.LENGTH_SHORT).show();
